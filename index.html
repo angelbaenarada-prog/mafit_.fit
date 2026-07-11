@@ -1,0 +1,559 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mafit - Centro de Experiencia Digital & Nutrición IA</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link class="sw" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              charcoal: '#121212',
+              card: '#1C1C1E',
+              gold: '#D4AF37',
+              champagne: '#E8D3C9',
+              textMuted: '#A0A0AB'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            serif: ['Playfair Display', 'serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #121212;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #D4AF37;
+      border-radius: 3px;
+    }
+    .gradient-gold {
+      background: linear-gradient(135deg, #E8D3C9 0%, #D4AF37 100%);
+    }
+    .glow-gold {
+      box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+    }
+  </style>
+</head>
+<body class="bg-brand-charcoal text-gray-100 font-sans min-h-screen flex flex-col selection:bg-brand-gold selection:text-brand-charcoal">
+
+
+  <!-- Navegación Premium -->
+  <nav class="sticky top-0 z-50 bg-brand-charcoal/90 backdrop-blur-md border-b border-white/5 px-4 py-3 md:px-8">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <a href="#inicio" onclick="showSection('inicio')" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-full border border-brand-gold/40 flex items-center justify-center overflow-hidden bg-white/5 transition group-hover:border-brand-gold">
+          <span class="font-serif text-brand-gold font-bold text-lg">M</span>
+        </div>
+        <div>
+          <span class="font-serif text-xl tracking-widest font-bold block text-white group-hover:text-brand-champagne transition">MAFIT</span>
+          <span class="text-[9px] tracking-[0.2em] uppercase text-brand-gold block -mt-1">Protein Shakes</span>
+        </div>
+      </a>
+
+
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#inicio" onclick="showSection('inicio')" class="nav-link text-sm font-medium hover:text-brand-gold transition text-brand-gold">Inicio</a>
+        <a href="#menu" onclick="showSection('menu')" class="nav-link text-sm font-medium text-gray-400 hover:text-brand-gold transition">Nuestro Menú</a>
+        <a href="#ia-builder" onclick="showSection('ia-builder')" class="nav-link text-sm font-medium text-gray-400 hover:text-brand-gold transition flex items-center gap-1.5"><i class="fa-solid fa-wand-magic-sparkles text-brand-gold"></i> Asesor Nutricional IA</a>
+        <a href="#contacto" onclick="showSection('contacto')" class="nav-link text-sm font-medium text-gray-400 hover:text-brand-gold transition">Ubicación</a>
+      </div>
+
+
+      <div class="hidden md:block">
+        <a href="https://wa.me/573244716150?text=Hola%20Mafit!%20Quiero%20hacer%20un%20pedido." target="_blank" class="px-5 py-2 rounded-full border border-brand-gold/50 text-brand-gold text-xs font-semibold tracking-wider uppercase hover:bg-brand-gold hover:text-brand-charcoal transition duration-300">
+          Pedir Batido
+        </a>
+      </div>
+
+
+      <button onclick="toggleMobileMenu()" class="md:hidden text-gray-400 hover:text-white p-2">
+        <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
+      </button>
+    </div>
+
+
+    <div id="mobile-menu" class="hidden md:hidden mt-3 pt-3 border-t border-white/5 flex flex-col gap-3 pb-2">
+      <a href="#inicio" onclick="showSection('inicio')" class="text-sm py-2 px-3 rounded bg-white/5 text-brand-gold">Inicio</a>
+      <a href="#menu" onclick="showSection('menu')" class="text-sm py-2 px-3 rounded text-gray-300 hover:bg-white/5">Nuestro Menú</a>
+      <a href="#ia-builder" onclick="showSection('ia-builder')" class="text-sm py-2 px-3 rounded text-gray-300 hover:bg-white/5 flex items-center gap-2"><i class="fa-solid fa-wand-magic-sparkles text-brand-gold"></i> Asesor Nutricional IA</a>
+      <a href="#contacto" onclick="showSection('contacto')" class="text-sm py-2 px-3 rounded text-gray-300 hover:bg-white/5">Ubicación</a>
+      <a href="https://wa.me/573244716150?text=Hola%20Mafit!%20Quiero%20hacer%20un%20pedido%20desde%20la%20web." target="_blank" class="mt-2 text-center bg-brand-gold text-brand-charcoal py-2 rounded-full text-sm font-bold">Pedir por WhatsApp</a>
+    </div>
+  </nav>
+
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="flex-grow">
+    
+    <!-- SECCIÓN INICIO -->
+    <section id="sec-inicio" class="section-view px-4 py-12 md:py-20 max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div class="lg:col-span-7 space-y-6">
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-brand-gold/20 text-brand-gold text-xs tracking-wide">
+            <span class="w-2 h-2 rounded-full bg-brand-gold animate-pulse"></span>
+            Gimnasio / Club Deportivo & Nutrición
+          </div>
+          <h1 class="font-serif text-4xl md:text-6xl lg:text-7xl font-bold leading-tight text-white">
+            Transforma tu <br>
+            <span class="text-transparent bg-clip-text gradient-gold">Cuerpo, Mente</span> <br>
+            y Espíritu.
+          </h1>
+          <p class="text-gray-400 text-base md:text-lg max-w-xl leading-relaxed">
+            Nos dedicamos a transformar vidas, cuerpos, mentes y espíritus a través de un enfoque integral en nutrición. Nuestro método se basa en una alimentación rica en proteínas de alta calidad, nutrientes esenciales y la energía que tu organismo necesita para alcanzar su máximo potencial. 🌟
+          </p>
+          <div class="pt-4 flex flex-col sm:flex-row gap-4">
+            <button onclick="showSection('ia-builder')" class="px-8 py-4 rounded-full bg-brand-gold text-brand-charcoal font-bold tracking-wide hover:bg-brand-champagne transition duration-300 flex items-center justify-center gap-2 shadow-lg shadow-brand-gold/10">
+              <i class="fa-solid fa-wand-magic-sparkles"></i> Diseñar mi Batido con IA
+            </button>
+            <button onclick="showSection('menu')" class="px-8 py-4 rounded-full bg-white/5 border border-white/10 text-white font-semibold hover:bg-white/10 transition">
+              Ver Catálogo Completo
+            </button>
+          </div>
+
+
+          <div class="grid grid-cols-3 gap-6 pt-10 border-t border-white/5 max-w-md">
+            <div>
+              <span class="block text-2xl font-bold text-brand-gold font-serif">100%</span>
+              <span class="text-xs text-brand-textMuted uppercase tracking-wider">Premium Protein</span>
+            </div>
+            <div>
+              <span class="block text-2xl font-bold text-brand-gold font-serif">A Medida</span>
+              <span class="text-xs text-brand-textMuted uppercase tracking-wider">Plan Nutricional</span>
+            </div>
+            <div>
+              <span class="block text-2xl font-bold text-brand-gold font-serif">Barranquilla</span>
+              <span class="text-xs text-brand-textMuted uppercase tracking-wider">Sede Central</span>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="lg:col-span-5 relative">
+          <div class="absolute -inset-1 rounded-2xl bg-gradient-to-r from-brand-champagne to-brand-gold opacity-20 blur-2xl"></div>
+          <div class="relative bg-brand-card border border-white/10 p-6 rounded-2xl glow-gold">
+            <img id="img-hero" src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=600" alt="Mafit Premium Lifestyle" class="w-full h-80 object-cover rounded-xl mb-6 grayscale hover:grayscale-0 transition-all duration-700">
+            <div class="flex items-center justify-between">
+              <div>
+                <span class="text-[10px] uppercase text-brand-gold tracking-widest font-bold">Recomendado de Hoy</span>
+                <h4 class="font-serif text-lg font-bold text-white">Mafit Fit Gold</h4>
+              </div>
+              <span class="bg-brand-gold/10 text-brand-gold text-xs px-3 py-1 rounded-full border border-brand-gold/20 font-bold">$18.900 Cop</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- SECCIÓN MENÚ / CATÁLOGO -->
+    <section id="sec-menu" class="section-view hidden px-4 py-12 max-w-7xl mx-auto">
+      <div class="text-center max-w-3xl mx-auto mb-12 space-y-3">
+        <span class="text-brand-gold text-xs font-bold uppercase tracking-[0.2em]">Selección Gourmet</span>
+        <h2 class="font-serif text-3xl md:text-5xl font-bold">Nuestra Carta de Bienestar</h2>
+        <p class="text-gray-400 text-sm md:text-base">Batidos e infusiones elaborados rigurosamente bajo el estándar de calidad Mafit. Ideales para antes o después de tu entrenamiento.</p>
+      </div>
+
+
+      <div class="flex flex-wrap justify-center gap-3 mb-10">
+        <button onclick="filterMenu('all')" class="category-btn px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider bg-brand-gold text-brand-charcoal transition">Todos</button>
+        <button onclick="filterMenu('protein')" class="category-btn px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white transition">Hiperproteicos</button>
+        <button onclick="filterMenu('energy')" class="category-btn px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white transition">Energía & Enfoque</button>
+        <button onclick="filterMenu('green')" class="category-btn px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white transition">Verdes & Detox</button>
+      </div>
+
+
+      <div id="products-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+    </section>
+
+
+    <!-- SECCIÓN ASESOR NUTRICIONAL IA -->
+    <section id="sec-ia-builder" class="section-view hidden px-4 py-12 max-w-5xl mx-auto">
+      <div class="text-center max-w-2xl mx-auto mb-10 space-y-3">
+        <span class="text-brand-gold text-xs font-bold uppercase tracking-[0.2em]"><i class="fa-solid fa-wand-magic-sparkles"></i> Tecnología Inteligente</span>
+        <h2 class="font-serif text-3xl md:text-5xl font-bold">Diseña tu Batido Ideal</h2>
+        <p class="text-gray-400 text-sm md:text-base">Ingresa tus objetivos y condiciones físicas. Nuestro motor de IA impulsado por Gemini creará tu perfil nutricional ideal.</p>
+      </div>
+
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div class="lg:col-span-5 bg-brand-card border border-white/5 p-6 rounded-2xl space-y-6">
+          <h3 class="font-serif text-xl font-bold text-white border-b border-white/5 pb-3">Tus Datos Físicos</h3>
+          
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-brand-textMuted mb-2 font-semibold">Tu Objetivo Principal</label>
+            <select id="user-goal" class="w-full bg-brand-charcoal border border-white/10 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:border-brand-gold">
+              <option value="ganancia-muscular">Aumento de Masa Muscular (Hipertrofia)</option>
+              <option value="perdida-peso">Definición & Pérdida de Grasa</option>
+              <option value="energia-resistencia">Energía Pre-Entrenamiento Extrema</option>
+              <option value="recuperacion-salud">Recuperación e Inmunología Completa</option>
+            </select>
+          </div>
+
+
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-brand-textMuted mb-2 font-semibold">Tipo de Alimentación / Restricciones</label>
+            <select id="user-diet" class="w-full bg-brand-charcoal border border-white/10 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:border-brand-gold">
+              <option value="estandar">Sin restricciones (Proteína de Suero Whey)</option>
+              <option value="vegano">100% Vegano / Plant-Based (Arveja y Soya)</option>
+              <option value="intolerancia-lactosa">Intolerante a la Lactosa (Whey Isolate)</option>
+              <option value="keto">Keto / Bajo en Carbohidratos</option>
+            </select>
+          </div>
+
+
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-brand-textMuted mb-2 font-semibold">Preferencia de Sabor</label>
+            <input type="text" id="user-flavor" placeholder="Ej: Chocolate belga, fresas, vainilla..." class="w-full bg-brand-charcoal border border-white/10 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:border-brand-gold">
+          </div>
+
+
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-brand-textMuted mb-2 font-semibold">Nivel de Actividad Diaria</label>
+            <div class="grid grid-cols-3 gap-2">
+              <button onclick="setActivity('Moderado')" class="activity-btn px-2 py-2 text-xs rounded border border-brand-gold text-brand-gold transition">Moderado</button>
+              <button onclick="setActivity('Intenso')" class="activity-btn px-2 py-2 text-xs rounded border border-white/10 text-gray-400 hover:border-brand-gold transition">Intenso</button>
+              <button onclick="setActivity('Atleta')" class="activity-btn px-2 py-2 text-xs rounded border border-white/10 text-gray-400 hover:border-brand-gold transition">Atleta Pro</button>
+            </div>
+          </div>
+
+
+          <button onclick="generateCustomShake()" class="w-full py-4 rounded-full bg-brand-gold text-brand-charcoal font-bold tracking-wide hover:bg-brand-champagne transition duration-300 flex items-center justify-center gap-2">
+            <i class="fa-solid fa-calculator animate-bounce"></i> Calcular & Diseñar Batido
+          </button>
+        </div>
+
+
+        <div class="lg:col-span-7 bg-brand-card border border-white/5 p-6 rounded-2xl relative min-h-[440px] flex flex-col justify-between">
+          <div id="ai-placeholder" class="flex flex-col items-center justify-center text-center my-auto py-12 space-y-4">
+            <div class="w-16 h-16 rounded-full bg-brand-gold/10 border border-brand-gold/20 flex items-center justify-center animate-pulse">
+              <i class="fa-solid fa-wand-magic-sparkles text-2xl text-brand-gold"></i>
+            </div>
+            <h4 class="font-serif text-xl font-bold text-white">Tu batido te espera</h4>
+            <p class="text-xs text-gray-400 max-w-sm">Configura tus preferencias a la izquierda y presiona el botón. Nuestra IA generará una fórmula personalizada bajo el Método Mafit.</p>
+          </div>
+
+
+          <div id="ai-loading" class="hidden flex flex-col items-center justify-center text-center my-auto py-12 space-y-4">
+            <div class="relative w-16 h-16">
+              <div class="absolute inset-0 rounded-full border-4 border-brand-gold/10"></div>
+              <div class="absolute inset-0 rounded-full border-4 border-t-brand-gold animate-spin"></div>
+            </div>
+            <p class="text-brand-gold font-bold animate-pulse text-sm">Gemini está analizando tus objetivos...</p>
+          </div>
+
+
+          <div id="ai-result" class="hidden space-y-6">
+            <div class="space-y-4">
+              <div class="space-y-1">
+                <span class="text-[10px] uppercase text-brand-gold tracking-widest font-bold block">Tu Fórmula Exclusiva Mafit</span>
+                <h3 id="shake-name" class="font-serif text-2xl font-bold text-white">Fit Protein Max</h3>
+                <p id="shake-description" class="text-xs text-gray-400 leading-relaxed"></p>
+              </div>
+
+
+              <div class="grid grid-cols-4 gap-2 bg-brand-charcoal p-3 rounded-xl border border-white/5 text-center">
+                <div>
+                  <span class="block text-brand-gold text-sm font-bold" id="macro-prot">30g</span>
+                  <span class="text-[8px] text-brand-textMuted uppercase">Proteína</span>
+                </div>
+                <div>
+                  <span class="block text-white text-sm font-bold" id="macro-carbs">12g</span>
+                  <span class="text-[8px] text-brand-textMuted uppercase">Carbs</span>
+                </div>
+                <div>
+                  <span class="block text-white text-sm font-bold" id="macro-fats">5g</span>
+                  <span class="text-[8px] text-brand-textMuted uppercase">Grasas</span>
+                </div>
+                <div>
+                  <span class="block text-brand-gold text-sm font-bold" id="macro-kcal">250 kcal</span>
+                  <span class="text-[8px] text-brand-textMuted uppercase">Calorías</span>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="border-t border-white/5 pt-4">
+              <h4 class="text-xs uppercase text-brand-gold font-bold tracking-wider mb-2">Ingredientes Recomendados:</h4>
+              <ul id="shake-ingredients" class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-gray-300"></ul>
+            </div>
+
+
+            <div class="flex gap-3 justify-end border-t border-white/5 pt-4">
+              <a id="order-custom-btn" href="#" target="_blank" class="w-full sm:w-auto px-6 py-3 rounded-full bg-brand-gold text-brand-charcoal font-bold text-xs hover:bg-brand-champagne transition flex items-center justify-center gap-1.5 shadow-md">
+                <i class="fa-brands fa-whatsapp text-sm"></i> Pedir esta fórmula por WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- SECCIÓN CONTACTO / UBICACIÓN -->
+    <section id="sec-contacto" class="section-view hidden px-4 py-12 max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div class="lg:col-span-5 space-y-6">
+          <span class="text-brand-gold text-xs font-bold uppercase tracking-[0.2em]">Visítanos</span>
+          <h2 class="font-serif text-3xl md:text-5xl font-bold">Nuestra Sede en Barranquilla</h2>
+          
+          <div class="space-y-4 pt-4">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-brand-gold flex-shrink-0">
+                <i class="fa-solid fa-location-dot"></i>
+              </div>
+              <div>
+                <h4 class="text-sm font-bold text-white">Dirección</h4>
+                <p class="text-xs text-gray-400 mt-1">Cl. 40 #44-115 Loc 2, Nte. Centro Historico, Barranquilla, Atlántico, Colombia.</p>
+              </div>
+            </div>
+
+
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-brand-gold flex-shrink-0">
+                <i class="fa-solid fa-clock"></i>
+              </div>
+              <div>
+                <h4 class="text-sm font-bold text-white">Horarios de Atención</h4>
+                <p class="text-xs text-gray-400 mt-1">Lunes a Sábado: 6:00 AM - 9:00 PM</p>
+                <p class="text-xs text-red-400 font-semibold mt-1">Domingo: Cerrado</p>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="pt-6">
+            <a href="https://wa.me/573244716150?text=Hola%20Mafit!%20Vi%20su%20p%C3%A1gina%20web%20y%20me%20gustar%C3%ADa%20hacerles%20una%20consulta." target="_blank" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-brand-gold text-brand-charcoal font-bold text-sm hover:bg-brand-champagne transition shadow-lg shadow-brand-gold/10">
+              <i class="fa-brands fa-whatsapp text-lg"></i> Chatear con nosotros
+            </a>
+          </div>
+        </div>
+
+
+        <div class="lg:col-span-7">
+          <div class="bg-brand-card border border-white/10 p-4 rounded-2xl relative overflow-hidden h-[350px]">
+            <div class="absolute inset-0 bg-neutral-900 flex flex-col items-center justify-center p-8 text-center space-y-4">
+              <div class="w-14 h-14 rounded-full bg-brand-gold/10 border border-brand-gold/20 flex items-center justify-center text-brand-gold">
+                <i class="fa-solid fa-map-location-dot text-xl"></i>
+              </div>
+              <div>
+                <h3 class="font-serif text-lg font-bold text-white">Norte Centro Histórico</h3>
+                <p class="text-xs text-gray-400 max-w-sm mt-1">Cl. 40 #44-115 Loc 2, Barranquilla.</p>
+              </div>
+              <a href="https://maps.google.com/?q=Cl.+40+%2344-115,+Barranquilla,+Colombia" target="_blank" class="px-5 py-2.5 rounded-full bg-white/5 border border-white/10 text-white hover:bg-white/10 transition text-xs font-semibold">
+                Abrir en Google Maps <i class="fa-solid fa-up-right-from-square ml-1.5"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+  </main>
+
+
+  <!-- Pie de Página -->
+  <footer class="bg-[#0A0A0A] border-t border-white/5 py-12 px-4 md:px-8 text-center md:text-left">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+      <div class="space-y-2">
+        <h3 class="font-serif text-lg font-bold tracking-widest text-white">MAFIT</h3>
+        <p class="text-xs text-brand-textMuted">Transformando cuerpo, mente y espíritu. Barranquilla, Colombia.</p>
+      </div>
+
+
+      <div class="flex flex-wrap justify-center gap-6 text-xs text-gray-400">
+        <a href="#inicio" onclick="showSection('inicio')" class="hover:text-brand-gold transition">Inicio</a>
+        <a href="#menu" onclick="showSection('menu')" class="hover:text-brand-gold transition">Nuestro Menú</a>
+        <a href="#ia-builder" onclick="showSection('ia-builder')" class="hover:text-brand-gold transition">Asesor IA</a>
+        <a href="#contacto" onclick="showSection('contacto')" class="hover:text-brand-gold transition">Contacto</a>
+      </div>
+
+
+      <div class="text-xs text-brand-textMuted space-y-2 text-center md:text-right">
+        <div class="flex justify-center md:justify-end gap-4 text-sm text-gray-400 mb-2">
+          <a href="https://instagram.com/mafit_.fit" target="_blank" class="hover:text-brand-gold transition"><i class="fa-brands fa-instagram"></i> @mafit_.fit</a>
+          <a href="https://wa.me/573244716150" target="_blank" class="hover:text-brand-gold transition"><i class="fa-brands fa-whatsapp"></i> Chat</a>
+        </div>
+        <p>&copy; 2026 Mafit Protein Shakes. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- SCRIPT LOGIC -->
+  <script>
+    const staticMenu = [
+      {
+        id: 1,
+        name: "Mafit Fit Gold",
+        category: "protein",
+        description: "Suero de leche de alta pureza aislado, enriquecido con BCAAs sabor chocolate belga premium y trozos de avellanas.",
+        price: "$18.900",
+        img: "https://images.unsplash.com/photo-1553530979-7ee52a2670c4?q=80&w=600",
+        tags: ["Hiperproteico", "Best Seller"]
+      },
+      {
+        id: 2,
+        name: "Vigor Matcha Focus",
+        category: "energy",
+        description: "Batido energizante de té Matcha ceremonial japonés, espinaca orgánica, leche de almendras y scoop de proteína de vainilla francesa.",
+        price: "$16.500",
+        img: "https://images.unsplash.com/photo-1553530979-7ee52a2670c4?q=80&w=600",
+        tags: ["Enfoque Mental", "Energizante"]
+      },
+      {
+        id: 3,
+        name: "Detox Green Supreme",
+        category: "green",
+        description: "Infusión de espirulina azul, col rizada, apio fresco, manzana verde y proteína limpia de origen vegetal con infusión de limón.",
+        price: "$15.900",
+        img: "https://images.unsplash.com/photo-1553530979-7ee52a2670c4?q=80&w=600",
+        tags: ["Detox", "Vegano"]
+      }
+    ];
+
+
+    let selectedActivity = "Moderado";
+
+
+    window.onload = function() {
+      renderMenu(staticMenu);
+      window.onhashchange = function() {
+        const hash = window.location.hash.replace('#', '') || 'inicio';
+        showSection(hash);
+      };
+    };
+
+
+    function showSection(sectionId) {
+      document.querySelectorAll('.section-view').forEach(sec => sec.classList.add('hidden'));
+      const activeSection = document.getElementById(`sec-${sectionId}`);
+      if (activeSection) activeSection.classList.remove('hidden');
+      
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.classList.remove('text-brand-gold');
+        link.classList.add('text-gray-400');
+        if (link.getAttribute('href') === `#${sectionId}`) {
+          link.classList.remove('text-gray-400');
+          link.classList.add('text-brand-gold');
+        }
+      });
+      document.getElementById('mobile-menu').classList.add('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      if (menu.classList.contains('hidden')) {
+        menu.classList.remove('hidden');
+      } else {
+        menu.classList.add('hidden');
+      }
+    }
+
+
+    function renderMenu(items) {
+      const grid = document.getElementById('products-grid');
+      grid.innerHTML = '';
+      items.forEach(product => {
+        const card = document.createElement('div');
+        card.className = "bg-brand-card border border-white/5 p-5 rounded-2xl flex flex-col justify-between group";
+        card.innerHTML = `
+          <div>
+            <div class="relative rounded-xl overflow-hidden mb-4 aspect-video bg-neutral-900">
+              <img src="${product.img}" alt="${product.name}" class="w-full h-full object-cover">
+            </div>
+            <h3 class="font-serif text-xl font-bold text-white mb-2">${product.name}</h3>
+            <p class="text-gray-400 text-xs leading-relaxed mb-4">${product.description}</p>
+          </div>
+          <div class="flex items-center justify-between pt-4 border-t border-white/5">
+            <span class="text-brand-gold font-bold text-lg font-serif">${product.price}</span>
+            <a href="https://wa.me/573244716150?text=Hola%20Mafit!%20Me%20gustar%C3%ADa%20ordenar%20el%20batido%20${encodeURIComponent(product.name)}" target="_blank" class="px-4 py-2 rounded-full bg-brand-gold text-brand-charcoal text-xs font-bold">
+              Pedir
+            </a>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+
+    function filterMenu(category) {
+      if (category === 'all') {
+        renderMenu(staticMenu);
+      } else {
+        renderMenu(staticMenu.filter(item => item.category === category));
+      }
+    }
+
+
+    function setActivity(level) {
+      selectedActivity = level;
+      document.querySelectorAll('.activity-btn').forEach(btn => {
+        btn.classList.remove('border-brand-gold', 'text-brand-gold');
+        btn.classList.add('border-white/10', 'text-gray-400');
+      });
+      event.currentTarget.classList.remove('border-white/10', 'text-gray-400');
+      event.currentTarget.classList.add('border-brand-gold', 'text-brand-gold');
+    }
+
+
+    function generateCustomShake() {
+      const goal = document.getElementById('user-goal').value;
+      const diet = document.getElementById('user-diet').value;
+      const flavor = document.getElementById('user-flavor').value || "Vainilla suave";
+      
+      const placeholder = document.getElementById('ai-placeholder');
+      const loading = document.getElementById('ai-loading');
+      const resultDiv = document.getElementById('ai-result');
+
+
+      placeholder.classList.add('hidden');
+      resultDiv.classList.add('hidden');
+      loading.classList.remove('hidden');
+
+
+      setTimeout(() => {
+        loading.classList.add('hidden');
+        resultDiv.classList.remove('hidden');
+
+
+        let name = "Mafit Custom Shaker Pro";
+        let desc = `Fórmula calculada meticulosamente para tus metas de ${goal.replace('-', ' ')} adaptada a un régimen ${diet}.`;
+        
+        document.getElementById('shake-name').innerText = name;
+        document.getElementById('shake-description').innerText = desc;
+
+
+        const ingList = document.getElementById('shake-ingredients');
+        ingList.innerHTML = `
+          <li class="bg-brand-charcoal px-3 py-2 rounded-lg border border-white/5"><i class="fa-solid fa-leaf text-brand-gold"></i> 1.5 Scoops de Proteína Premium (${diet})</li>
+          <li class="bg-brand-charcoal px-3 py-2 rounded-lg border border-white/5"><i class="fa-solid fa-leaf text-brand-gold"></i> Topping seleccionado de ${flavor}</li>
+          <li class="bg-brand-charcoal px-3 py-2 rounded-lg border border-white/5"><i class="fa-solid fa-leaf text-brand-gold"></i> Complejo de Superalimentos Energéticos</li>
+        `;
+
+
+        const orderText = `¡Hola Mafit! Acabo de calcular mi batido exclusivo en la web:\n\n*Objetivo:* ${goal}\n*Dieta:* ${diet}\n*Sabor:* ${flavor}\n*Actividad:* ${selectedActivity}\n\n¡Quiero ordenarlo!`;
+        document.getElementById('order-custom-btn').href = `https://wa.me/573244716150?text=${encodeURIComponent(orderText)}`;
+      }, 1500);
+    }
+  </script>
+</body>
+</html>
