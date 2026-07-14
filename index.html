@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -40,9 +40,6 @@
             background: rgba(255, 255, 255, 0.6);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(197, 160, 89, 0.2);
-        }
-        .shake-item:hover .shake-overlay {
-            opacity: 1;
         }
         @keyframes pulse-slow {
             0%, 100% { opacity: 1; transform: scale(1); }
@@ -101,7 +98,7 @@
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-16">
                 <h2 class="text-4xl mb-4 italic">El Método Mafit</h2>
-                <p class="text-gray-500">Entiende cómo optimizamos tu nutrición en cada preparación.</p>
+                <p class="text-gray-500">Entiende cómo optimizamos tu nutrición en cada preparation.</p>
             </div>
             
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -127,7 +124,7 @@
                         <div class="w-10 h-10 rounded-full bg-mafit-soft-pink flex items-center justify-center text-mafit-dark shrink-0">3</div>
                         <div>
                             <h4 class="text-xl font-bold mb-2">Energía Limpia (25%)</h4>
-                            <p class="text-gray-600">Grasas saludables y carbohidratos complexes de bajo índice glucémico.</p>
+                            <p class="text-gray-600">Grasas saludables y carbohidratos complejos de bajo índice glucémico.</p>
                         </div>
                     </div>
                 </div>
@@ -144,154 +141,160 @@
                 <button onclick="filterMenu('detox')" class="px-6 py-2 rounded-full border border-mafit-gold text-xs font-bold hover:bg-mafit-gold hover:text-white transition-all">DETOX</button>
                 <button onclick="filterMenu('power')" class="px-6 py-2 rounded-full border border-mafit-gold text-xs font-bold hover:bg-mafit-gold hover:text-white transition-all">FUERZA</button>
             </div>
+            <div id="menuGrid" class="grid grid-cols-1 md:grid-cols-3 gap-8"></div>
+        </div>
+    </section>
 
-            <div id="menuGrid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Los items se cargan por JS -->
+    <!-- Sección del Asesor Nutricional Inteligente con IA (REDISEÑO PREMIUM EN CAJA BLANCA) -->
+    <section id="asesor-ia" class="py-24 px-6 bg-[#FAF5F0] border-t border-b border-mafit-soft-pink">
+        <div class="max-w-5xl mx-auto bg-white rounded-3xl p-8 md:p-12 shadow-xl border border-mafit-soft-pink">
+            
+            <div class="text-center mb-10">
+                <span class="text-mafit-gold font-semibold tracking-[0.2em] text-xs uppercase">Tecnología de Vanguardia</span>
+                <h2 class="text-4xl font-serif mt-2 mb-2 text-mafit-dark">Mafit Custom Shaker Pro Formula 1 ⚡</h2>
+                <p class="text-gray-400 text-sm max-w-xl mx-auto">Diseña tu batido ideal con nuestro Optimizador Inteligente Nutricional</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-stretch">
+                <!-- Panel de Controles -->
+                <div class="space-y-6">
+                    <!-- 1. OBJETIVO PRINCIPAL -->
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">1. Tu Objetivo Principal</label>
+                        <select id="ai-goal" class="w-full p-4 rounded-xl border border-gray-200 focus:border-mafit-gold focus:ring-1 focus:ring-mafit-gold outline-none text-sm bg-[#fcfbfc]">
+                            <option value="Control de Peso / Reducción De Grasa Visceral">Control de Peso / Reducción De Grasa Visceral</option>
+                            <option value="Aumento de Masa Muscular">Aumento de Masa Muscular</option>
+                            <option value="Energía y Bienestar Activo">Energía y Bienestar Activo</option>
+                        </select>
+                    </div>
+
+                    <!-- 2. ESTILO DE ALIMENTACIÓN -->
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">2. Estilo de Alimentación</label>
+                        <select id="ai-activity" class="w-full p-4 rounded-xl border border-gray-200 focus:border-mafit-gold focus:ring-1 focus:ring-mafit-gold outline-none text-sm bg-[#fcfbfc]">
+                            <option value="Balanceada Tradicional">Balanceada Tradicional</option>
+                            <option value="Alta en Proteínas / Fit">Alta en Proteínas / Fit</option>
+                            <option value="Baja en Calorías / Snack Liviano">Baja en Calorías / Snack Liviano</option>
+                        </select>
+                    </div>
+
+                    <!-- 3. FÓRMULA BASE -->
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">3. Selecciona tu Fórmula Base (Fórmula 1 + PDM/PPP)</label>
+                        <select id="ai-formula" class="w-full p-4 rounded-xl border border-gray-200 focus:border-mafit-gold focus:ring-1 focus:ring-mafit-gold outline-none text-sm bg-[#fcfbfc]">
+                            <option value="9">Batido 9g Proteína (90 kcal | $9.000)</option>
+                            <option value="14">Batido 14g Proteína (105 kcal | $10.500)</option>
+                            <option value="18">Batido 18g Proteína (150 kcal | $15.000)</option>
+                            <option value="27" selected>Batido 27g Proteína (210 kcal | $20.500)</option>
+                            <option value="25">H24 Rebuild Strength (25g Prot | 190 kcal | $21.000)</option>
+                        </select>
+                    </div>
+
+                    <!-- 4. SABORES - OPCIÓN MÚLTIPLE -->
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">4. Combinación de Sabores (Opción Múltiple)</label>
+                        <div class="grid grid-cols-2 gap-3 mt-2">
+                            <label class="flex items-center space-x-3 text-xs p-3 bg-gray-50 rounded-xl cursor-pointer hover:bg-[#FAF5F0] border border-transparent hover:border-mafit-gold transition-all">
+                                <input type="checkbox" name="ai-flavor" value="Cookies and Cream" checked class="accent-[#C5A059]">
+                                <span>Cookies and Cream 🍪</span>
+                            </label>
+                            <label class="flex items-center space-x-3 text-xs p-3 bg-gray-50 rounded-xl cursor-pointer hover:bg-[#FAF5F0] border border-transparent hover:border-mafit-gold transition-all">
+                                <input type="checkbox" name="ai-flavor" value="Chocoballanas" checked class="accent-[#C5A059]">
+                                <span>Chocoballanas 🍫🍌</span>
+                            </label>
+                            <label class="flex items-center space-x-3 text-xs p-3 bg-gray-50 rounded-xl cursor-pointer hover:bg-[#FAF5F0] border border-transparent hover:border-mafit-gold transition-all">
+                                <input type="checkbox" name="ai-flavor" value="Vainilla Celestial" class="accent-[#C5A059]">
+                                <span>Vainilla 🍦</span>
+                            </label>
+                            <label class="flex items-center space-x-3 text-xs p-3 bg-gray-50 rounded-xl cursor-pointer hover:bg-[#FAF5F0] border border-transparent hover:border-mafit-gold transition-all">
+                                <input type="checkbox" name="ai-flavor" value="Fresa Silvestre" class="accent-[#C5A059]">
+                                <span>Fresa 🍓</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <button onclick="generateAIConsultation()" class="w-full bg-mafit-dark text-white py-4 rounded-xl font-bold tracking-wider text-xs uppercase hover:bg-mafit-gold hover:shadow-lg transition-all duration-300">
+                        ✨ Optimizar e Integrar con IA
+                    </button>
+                </div>
+
+                <!-- Visor / Resultado de la Calculadora IA -->
+                <div class="bg-gray-50 rounded-2xl border border-mafit-soft-pink p-6 flex flex-col justify-between relative min-h-[380px]">
+                    
+                    <!-- Estado Inicial -->
+                    <div id="ai-placeholder" class="absolute inset-0 flex flex-col items-center justify-center text-center p-6 z-10 bg-gray-50 rounded-2xl transition-all">
+                        <div class="text-5xl mb-3 ai-pulse">🥛</div>
+                        <h4 class="text-lg font-serif text-mafit-dark mb-1">Tu Configuración Nutricional</h4>
+                        <p class="text-xs text-gray-400 max-w-xs">Configura los parámetros a la izquierda y presiona el botón para procesar las métricas de la tabla oficial.</p>
+                    </div>
+
+                    <!-- Estado de Carga -->
+                    <div id="ai-loading" class="hidden absolute inset-0 bg-gray-50 flex flex-col items-center justify-center text-center p-6 z-20 rounded-2xl">
+                        <div class="w-10 h-10 border-4 border-mafit-gold border-t-transparent rounded-full animate-spin mb-4"></div>
+                        <h4 id="ai-loading-step" class="text-sm font-serif text-mafit-dark">Sincronizando con Mafit AI...</h4>
+                    </div>
+
+                    <!-- Contenedor del Resultado -->
+                    <div id="ai-result-content" class="hidden flex flex-col h-full justify-between opacity-0 transition-opacity duration-500">
+                        <div>
+                            <div class="flex justify-between items-start border-b border-gray-200 pb-3 mb-4">
+                                <div>
+                                    <span class="text-[9px] font-bold tracking-widest text-mafit-gold uppercase">Optimización Completada</span>
+                                    <h3 id="res-shake-name" class="text-xl font-serif text-mafit-dark mt-0.5">Nombre del Producto</h3>
+                                </div>
+                                <span class="text-xs font-bold text-mafit-gold bg-white px-3 py-1 rounded-full border border-mafit-soft-pink" id="calc-precio">$0</span>
+                            </div>
+
+                            <!-- Métricas Automatizadas de la Tabla -->
+                            <div class="grid grid-cols-3 gap-3 text-center mb-4">
+                                <div class="bg-white p-2.5 rounded-xl border border-gray-100 shadow-xs">
+                                    <div class="text-lg font-bold text-mafit-dark" id="calc-proteina">0g</div>
+                                    <div class="text-[9px] text-gray-400 uppercase font-semibold">Proteínas</div>
+                                </div>
+                                <div class="bg-white p-2.5 rounded-xl border border-gray-100 shadow-xs">
+                                    <div class="text-lg font-bold text-mafit-dark" id="calc-calorias">0</div>
+                                    <div class="text-[9px] text-gray-400 uppercase font-semibold">Calorías</div>
+                                </div>
+                                <div class="bg-white p-2.5 rounded-xl border border-gray-100 shadow-xs">
+                                    <div class="text-lg font-bold text-mafit-dark" id="calc-carbs">0g</div>
+                                    <div class="text-[9px] text-gray-400 uppercase font-semibold">Carbohidratos</div>
+                                </div>
+                            </div>
+
+                            <div class="text-xs space-y-3">
+                                <div>
+                                    <h5 class="font-bold text-gray-400 uppercase text-[9px] tracking-wider mb-1">📋 Receta / Preparación Sugerida:</h5>
+                                    <p id="res-ingredients" class="text-gray-600 bg-white p-2 rounded-lg border border-gray-100"></p>
+                                </div>
+                                <div>
+                                    <h5 class="font-bold text-mafit-gold uppercase text-[9px] tracking-wider mb-1">🎯 Análisis de Enfoque Inteligente:</h5>
+                                    <p id="res-benefits" class="text-gray-600 leading-relaxed"></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 pt-3 border-t border-dashed border-gray-200">
+                            <h5 class="text-[9px] font-bold text-mafit-dark uppercase tracking-wider mb-0.5">🎨 Sabores Combinados:</h5>
+                            <p id="res-tip" class="text-xs text-gray-500 italic"></p>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Sección del Asesor Nutricional Inteligente con IA -->
-    <section id="asesor-ia" class="py-24 px-6 bg-[#FAF5F0] border-t border-b border-mafit-soft-pink">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-16">
-                <span class="text-mafit-gold font-semibold tracking-[0.2em] text-xs uppercase">Tecnología de Vanguardia</span>
-                <h2 class="text-4xl mt-2 mb-4 italic">Asesor Nutricional IA de Mafit</h2>
-                <p class="text-gray-500 max-w-2xl mx-auto">Conéctate con nuestra inteligencia artificial premium para diseñar un batido y recomendación de estilo de vida completamente adaptada a tu cuerpo y objetivos cotidianos.</p>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
-                <!-- Formulario de Configuración Ajustado a tus Requerimientos -->
-                <div class="p-8 md:p-10 bg-white rounded-3xl border border-mafit-soft-pink shadow-sm flex flex-col justify-between">
-                    <div class="space-y-6">
-                        <h3 class="text-2xl font-serif mb-2 text-mafit-dark">Cuéntanos sobre ti</h3>
-                        
-                        <!-- 1. OBJETIVO PRINCIPAL -->
-                        <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">1. ¿Cuál es tu objetivo primordial?</label>
-                            <select id="ai-goal" class="w-full p-4 rounded-xl border border-gray-200 focus:border-mafit-gold focus:ring-1 focus:ring-mafit-gold outline-none transition-all text-sm bg-white">
-                                <option value="Control de Peso / Definición">Control de Peso / Definición</option>
-                                <option value="Aumento de Masa Muscular">Aumento de Masa Muscular</option>
-                                <option value="Energía y Bienestar Activo">Energía y Bienestar Activo</option>
-                            </select>
-                        </div>
-
-                        <!-- 2. TIPO DE ALIMENTACIÓN -->
-                        <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">2. Estilo de Alimentación</label>
-                            <select id="ai-activity" class="w-full p-4 rounded-xl border border-gray-200 focus:border-mafit-gold focus:ring-1 focus:ring-mafit-gold outline-none transition-all text-sm bg-white">
-                                <option value="Balanceada Tradicional">Balanceada Tradicional</option>
-                                <option value="Alta en Proteínas / Fit">Alta en Proteínas / Fit</option>
-                                <option value="Baja en Calorías / Snack Liviano">Baja en Calorías / Snack Liviano</option>
-                            </select>
-                        </div>
-
-                        <!-- 3. BASE DE PROTEÍNA AUTOMATIZADA -->
-                        <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">3. Selecciona tu Fórmula Base de Proteína</label>
-                            <select id="ai-formula" class="w-full p-4 rounded-xl border border-gray-200 focus:border-mafit-gold focus:ring-1 focus:ring-mafit-gold outline-none transition-all text-sm bg-white">
-                                <option value="9">Batido 9 gramos de Proteína — $9.000</option>
-                                <option value="14">Batido 14 gramos de Proteína — $10.500</option>
-                                <option value="18">Batido 18 gramos de Proteína — $15.000</option>
-                                <option value="27" selected>Batido 27 gramos de Proteína — $20.500</option>
-                                <option value="25">Batido H24 Rebuild Strength — $21.000</option>
-                            </select>
-                        </div>
-
-                        <!-- 4. PREFERENCIAS DE SABOR EN OPCIÓN MÚLTIPLE -->
-                        <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">4. Preferencias de Sabor (Opción Múltiple)</label>
-                            <div class="grid grid-cols-2 gap-3 mt-2">
-                                <label class="flex items-center space-x-3 text-sm p-3 bg-gray-50 rounded-xl cursor-pointer hover:bg-orange-50 border border-transparent hover:border-mafit-gold transition-all">
-                                    <input type="checkbox" name="ai-flavor" value="Cookies and Cream" checked class="accent-[#C5A059]">
-                                    <span>Cookies & Cream 🍪</span>
-                                </label>
-                                <label class="flex items-center space-x-3 text-sm p-3 bg-gray-50 rounded-xl cursor-pointer hover:bg-orange-50 border border-transparent hover:border-mafit-gold transition-all">
-                                    <input type="checkbox" name="ai-flavor" value="Chocoballanas" checked class="accent-[#C5A059]">
-                                    <span>Chocoballanas 🍫🍌</span>
-                                </label>
-                                <label class="flex items-center space-x-3 text-sm p-3 bg-gray-50 rounded-xl cursor-pointer hover:bg-orange-50 border border-transparent hover:border-mafit-gold transition-all">
-                                    <input type="checkbox" name="ai-flavor" value="Vainilla Celestial" class="accent-[#C5A059]">
-                                    <span>Vainilla 🍦</span>
-                                </label>
-                                <label class="flex items-center space-x-3 text-sm p-3 bg-gray-50 rounded-xl cursor-pointer hover:bg-orange-50 border border-transparent hover:border-mafit-gold transition-all">
-                                    <input type="checkbox" name="ai-flavor" value="Fresa Silvestre" class="accent-[#C5A059]">
-                                    <span>Fresa 🍓</span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <button onclick="generateAIConsultation()" class="mt-8 w-full bg-mafit-dark text-white py-4 rounded-xl font-bold tracking-wider text-xs uppercase hover:bg-mafit-gold hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2">
-                        <span>✨ Optimizar Con Inteligencia Artificial</span>
-                    </button>
+    <!-- Sección de Sede y Horarios -->
+    <section id="contacto" class="py-24 px-6 bg-mafit-dark text-white">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+            <div>
+                <h2 class="text-4xl mb-6 italic">Tu Espacio en Barranquilla</h2>
+                <p class="text-gray-400 mb-8 leading-relaxed">Ubicados en el Norte Centro Histórico, nuestra sede es más que un Shake Bar. Es el punto de encuentro para una comunidad que valora la salud integral.</p>
+                <div class="space-y-4">
+                    <div class="flex items-center gap-3"><span class="text-mafit-gold">📍</span><span>Cl. 40 #44-115 Loc 2, Barranquilla.</span></div>
+                    <div class="flex items-center gap-3"><span class="text-mafit-gold">⏰</span><div id="statusBadge" class="px-3 py-1 rounded text-xs font-bold bg-gray-700">Calculando...</div></div>
                 </div>
-
-                <!-- Resultado Interactivo de la IA (Estructura Original Respetada) -->
-                <div class="relative min-h-[450px] bg-white rounded-3xl border border-mafit-soft-pink overflow-hidden shadow-sm flex flex-col">
-                    <!-- Estado Inicial / Placeholder de Carga -->
-                    <div id="ai-placeholder" class="absolute inset-0 flex flex-col items-center justify-center text-center p-10 z-10 transition-opacity duration-500">
-                        <div class="text-6xl mb-4 ai-pulse">🥛</div>
-                        <h4 class="text-xl font-serif text-mafit-dark mb-2">Tu Fórmula Inteligente te Espera</h4>
-                        <p class="text-sm text-gray-400 max-w-sm">Completa tus datos y selecciona tus sabores a la izquierda para que nuestra IA calcule tus requerimientos y genere la combinación perfecta bajo el Método Mafit.</p>
-                    </div>
-
-                    <!-- Pantalla de Carga Activa -->
-                    <div id="ai-loading" class="hidden absolute inset-0 bg-white flex-col items-center justify-center text-center p-10 z-20">
-                        <div class="w-12 h-12 border-4 border-mafit-gold border-t-transparent rounded-full animate-spin mb-6"></div>
-                        <h4 id="ai-loading-step" class="text-lg font-serif text-mafit-dark mb-2">Consultando al Asesor Mafit...</h4>
-                        <p class="text-xs text-gray-400">Calculando balance ideal de proteínas y nutrientes esenciales de la tabla oficial.</p>
-                    </div>
-
-                    <!-- Contenedor del Resultado Dinámico Automático -->
-                    <div id="ai-result-content" class="hidden flex flex-col h-full justify-between p-8 md:p-10 opacity-0 transition-opacity duration-700">
-                        <div>
-                            <div class="flex justify-between items-start gap-4 mb-6">
-                                <div>
-                                    <span class="text-[10px] font-bold tracking-widest text-mafit-gold uppercase bg-[#FAF5F0] px-3 py-1 rounded-full border border-mafit-soft-pink">Mafit Custom Shaker Pro</span>
-                                    <h3 id="res-shake-name" class="text-3xl font-serif mt-2 text-mafit-dark">Cargando...</h3>
-                                </div>
-                                <div id="res-image-container" class="w-20 h-20 rounded-2xl overflow-hidden shadow-md shrink-0 border border-mafit-soft-pink">
-                                    <img id="res-shake-img" src="https://placehold.co/150x150/FAF5F0/242D35?text=Mafit" alt="Vista del Batido" class="w-full h-full object-cover">
-                                </div>
-                            </div>
-
-                            <!-- Métricas de la Tabla Calculadas Automáticamente -->
-                            <div class="grid grid-cols-3 gap-3 mb-6 text-center">
-                                <div class="bg-gray-50 p-3 rounded-xl border border-gray-100">
-                                    <div class="text-xl font-bold text-mafit-dark" id="calc-proteina">0g</div>
-                                    <div class="text-[10px] text-gray-400 uppercase tracking-wider">Proteínas</div>
-                                </div>
-                                <div class="bg-gray-50 p-3 rounded-xl border border-gray-100">
-                                    <div class="text-xl font-bold text-mafit-dark" id="calc-calorias">0</div>
-                                    <div class="text-[10px] text-gray-400 uppercase tracking-wider">Calorías</div>
-                                </div>
-                                <div class="bg-gray-50 p-3 rounded-xl border border-gray-100">
-                                    <div class="text-xl font-bold text-mafit-gold" id="calc-precio">$0</div>
-                                    <div class="text-[10px] text-gray-400 uppercase tracking-wider">Precio Pub.</div>
-                                </div>
-                            </div>
-
-                            <div class="mb-6">
-                                <h4 class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-3">Ingredientes de Alta Densidad</h4>
-                                <ul id="res-ingredients" class="grid grid-cols-1 gap-1 text-sm text-gray-600">
-                                    <!-- Dinámico -->
-                                </ul>
-                            </div>
-
-                            <div class="mb-6 p-4 bg-gray-50 rounded-xl border border-gray-100">
-                                <h4 class="text-xs font-bold uppercase tracking-wider text-mafit-gold mb-2">Por qué funciona para ti</h4>
-                                <p id="res-benefits" class="text-xs text-gray-500 leading-relaxed"></p>
-                            </div>
-
-                            <div class="mb-6">
-                                <h4 class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">Alineación del Método</h4>
-                                <p id="res-macros" class="text-xs text-gray-500 italic"></p>
-                            </div>
-                        </div>
-
-                        <div class="p-5 border-t border-dashed border-mafit-soft-pink mt-6">
-                            <div class="flex items-start gap-3">
-                                <span class="text-xl">💡</span>
-                                <div>
-                                    <h5 clas
+                <div class="mt-10 p-6 border border-gray-700 rounded-xl">
+                    <h4 class="font-bold mb-4 uppercase text-sm tracking-widest">Horarios de Servicio</h4>
+                    <div class="flex justify-between py-2 border-b border-gray-800"><span>Lunes a Viernes</span><span>6:00 AM - 9:00 PM</span></div>
+                    <div class="flex justify-between py-2 border-b border-gray-800"><span>Sábado
