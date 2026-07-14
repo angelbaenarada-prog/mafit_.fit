@@ -1,319 +1,315 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mafit | Experiencia de Bienestar Integral</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --mafit-cream: #FAF6F0;
-            --mafit-gold: #C5A059;
-            --mafit-dark: #242D35;
-            --mafit-soft-pink: #E9DCCF;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mafit - Centro de Experiencia Digital & Nutrición IA</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link class="sw" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              charcoal: '#121212',
+              card: '#1C1C1E',
+              gold: '#D4AF37',
+              champagne: '#E8D3C9',
+              textMuted: '#A0A0AB'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            serif: ['Playfair Display', 'serif'],
+          }
         }
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--mafit-cream);
-            color: var(--mafit-dark);
-            scroll-behavior: smooth;
-        }
-        h1, h2, h3, .font-serif {
-            font-family: 'Playfair Display', serif;
-        }
-        .chart-container {
-            position: relative;
-            width: 100%;
-            max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
-            height: 300px;
-            max-height: 350px;
-        }
-        .nav-link.active {
-            color: var(--mafit-gold);
-            border-bottom: 2px solid var(--mafit-gold);
-        }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(197, 160, 89, 0.2);
-        }
-        .shake-item:hover .shake-overlay {
-            opacity: 1;
-        }
-        @keyframes pulse-slow {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.7; transform: scale(1.02); }
-        }
-        .ai-pulse {
-            animation: pulse-slow 3s infinite ease-in-out;
-        }
-    </style>
+      }
+    }
+  </script>
+  <style>
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #121212;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #D4AF37;
+      border-radius: 3px;
+    }
+    .gradient-gold {
+      background: linear-gradient(135deg, #E8D3C9 0%, #D4AF37 100%);
+    }
+    .glow-gold {
+      box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+    }
+  </style>
 </head>
-<body class="antialiased">
+<body class="bg-brand-charcoal text-gray-100 font-sans min-h-screen flex flex-col selection:bg-brand-gold selection:text-brand-charcoal">
 
-    <!-- Chosen Palette: Champagne Elegance (Crema, Dorado Suave y Carbón) -->
-    <!-- Application Structure Plan: 
-        Se diseñó una SPA tipo Dashboard de Marca. 
-        1. Hero: Impacto visual y filosofía.
-        2. El Método: Análisis interactivo de los pilares nutricionales (Data Viz).
-        3. Carta Premium: Exploración de productos con filtros de beneficios.
-        4. Sede & Horarios: Información logística dinámica (Estado Abierto/Cerrado en tiempo real).
-        Este flujo permite que el usuario pase de la inspiración a la información técnica y finalmente a la acción de visitarte.
-    -->
-    <!-- Visualization & Content Choices: 
-        - Proporción de Macronutrientes: Gráfico de dona (Chart.js) para mostrar el balance del método.
-        - Menú Interactivo: Cards con cambio de estado para ingredientes.
-        - Horarios Dinámicos: Lógica JS para determinar si el negocio está abierto según la hora de Barranquilla.
-        - Iconografía: Basada en texto y estilos CSS para evitar el uso de SVG.
-    -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
-
-    <!-- Navegación -->
-    <nav class="fixed top-0 w-full z-50 glass-card px-6 py-4">
-        <div class="max-w-6xl mx-auto flex justify-between items-center">
-            <div class="text-2xl font-serif font-bold tracking-widest text-mafit-dark">MAFÍT</div>
-            <div class="hidden md:flex space-x-8 text-sm font-semibold uppercase tracking-wider">
-                <a href="#inicio" class="nav-link hover:text-mafit-gold transition-colors">Inicio</a>
-                <a href="#metodo" class="nav-link hover:text-mafit-gold transition-colors">El Método</a>
-                <a href="#menu" class="nav-link hover:text-mafit-gold transition-colors">Menú</a>
-                <a href="#asesor-ia" class="nav-link hover:text-mafit-gold transition-colors">Asesor IA</a>
-                <a href="#contacto" class="nav-link hover:text-mafit-gold transition-colors">Visítanos</a>
-            </div>
-            <a href="https://wa.me/yourlink" class="bg-mafit-dark text-white px-6 py-2 rounded-full text-xs font-bold hover:bg-mafit-gold transition-all">RESERVAR</a>
+  <!-- Navegación Premium -->
+  <nav class="sticky top-0 z-50 bg-brand-charcoal/90 backdrop-blur-md border-b border-white/5 px-4 py-3 md:px-8">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <a href="#inicio" onclick="showSection('inicio')" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-full border border-brand-gold/40 flex items-center justify-center overflow-hidden bg-white/5 transition group-hover:border-brand-gold">
+          <span class="font-serif text-brand-gold font-bold text-lg">M</span>
         </div>
-    </nav>
-
-    <!-- Sección de Inicio -->
-    <section id="inicio" class="min-h-screen pt-32 pb-20 px-6 flex flex-col items-center justify-center text-center">
-        <span class="text-mafit-gold font-semibold tracking-[0.3em] mb-4 uppercase">Bienvenidos a la Comunidad</span>
-        <h1 class="text-5xl md:text-7xl mb-6 leading-tight">Nutrición que Transforma<br><span class="italic font-normal">Cuerpo, Mente y Espíritu</span></h1>
-        <p class="max-w-2xl text-gray-600 text-lg leading-relaxed mb-10">
-            En Mafit, no solo servimos batidos. Diseñamos el combustible premium que tu organismo necesita para alcanzar su máximo potencial. Un enfoque integral basado en ciencia y sabor gourmet.
-        </p>
-        <div class="w-full max-w-4xl grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="p-8 border border-mafit-soft-pink rounded-2xl">
-                <div class="text-3xl mb-4">✨</div>
-                <h3 class="text-xl mb-2">Transformación</h3>
-                <p class="text-sm text-gray-500">Resultados reales a través de nutrición de alta densidad.</p>
-            </div>
-            <div class="p-8 border border-mafit-soft-pink rounded-2xl">
-                <div class="text-3xl mb-4">💪</div>
-                <h3 class="text-xl mb-2">Rendimiento</h3>
-                <p class="text-sm text-gray-500">Energía pura y limpia para tu entrenamiento diario.</p>
-            </div>
-            <div class="p-8 border border-mafit-soft-pink rounded-2xl">
-                <div class="text-3xl mb-4">🧘</div>
-                <h3 class="text-xl mb-2">Bienestar</h3>
-                <p class="text-sm text-gray-500">Un espacio de recuperación diseñado para tu paz mental.</p>
-            </div>
+        <div>
+          <span class="font-serif text-xl tracking-widest font-bold block text-white group-hover:text-brand-champagne transition">MAFIT</span>
+          <span class="text-[9px] tracking-[0.2em] uppercase text-brand-gold block -mt-1">Protein Shakes</span>
         </div>
-    </section>
+      </a>
 
-    <!-- Sección del Método -->
-    <section id="metodo" class="py-24 px-6 bg-white">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl mb-4 italic">El Método Mafit</h2>
-                <p class="text-gray-500">Entiende cómo optimizamos tu nutrición en cada preparación.</p>
-            </div>
-            
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                <div class="chart-container">
-                    <canvas id="metodoChart"></canvas>
-                </div>
-                <div class="space-y-8">
-                    <div class="flex items-start gap-4">
-                        <div class="w-10 h-10 rounded-full bg-mafit-gold flex items-center justify-center text-white shrink-0">1</div>
-                        <div>
-                            <h4 class="text-xl font-bold mb-2">Proteína de Alta Calidad (40%)</h4>
-                            <p class="text-gray-600">Base aislada de rápida absorción para la reconstrucción muscular inmediata post-entreno.</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start gap-4">
-                        <div class="w-10 h-10 rounded-full bg-mafit-dark flex items-center justify-center text-white shrink-0">2</div>
-                        <div>
-                            <h4 class="text-xl font-bold mb-2">Nutrientes Esenciales (35%)</h4>
-                            <p class="text-gray-600">Vitaminas y minerales quelados que activan tus funciones metabólicas.</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start gap-4">
-                        <div class="w-10 h-10 rounded-full bg-mafit-soft-pink flex items-center justify-center text-mafit-dark shrink-0">3</div>
-                        <div>
-                            <h4 class="text-xl font-bold mb-2">Energía Limpia (25%)</h4>
-                            <p class="text-gray-600">Grasas saludables y carbohidratos complejos de bajo índice glucémico.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#inicio" onclick="showSection('inicio')" class="nav-link text-sm font-medium hover:text-brand-gold transition text-brand-gold">Inicio</a>
+        <a href="#menu" onclick="showSection('menu')" class="nav-link text-sm font-medium text-gray-400 hover:text-brand-gold transition">Nuestro Menú</a>
+        <a href="#ia-builder" onclick="showSection('ia-builder')" class="nav-link text-sm font-medium text-gray-400 hover:text-brand-gold transition flex items-center gap-1.5"><i class="fa-solid fa-wand-magic-sparkles text-brand-gold"></i> Asesor Nutricional IA</a>
+        <a href="#contacto" onclick="showSection('contacto')" class="nav-link text-sm font-medium text-gray-400 hover:text-brand-gold transition">Ubicación</a>
+      </div>
 
-    <!-- Sección del Menú -->
-    <section id="menu" class="py-24 px-6">
-        <div class="max-w-6xl mx-auto text-center">
-            <h2 class="text-4xl mb-4 italic">Nuestra Carta Premium</h2>
-            <div class="flex justify-center gap-4 mb-12 flex-wrap">
-                <button onclick="filterMenu('all')" class="px-6 py-2 rounded-full border border-mafit-gold text-xs font-bold hover:bg-mafit-gold hover:text-white transition-all">TODO</button>
-                <button onclick="filterMenu('detox')" class="px-6 py-2 rounded-full border border-mafit-gold text-xs font-bold hover:bg-mafit-gold hover:text-white transition-all">DETOX</button>
-                <button onclick="filterMenu('power')" class="px-6 py-2 rounded-full border border-mafit-gold text-xs font-bold hover:bg-mafit-gold hover:text-white transition-all">FUERZA</button>
-            </div>
+      <div class="hidden md:block">
+        <a href="https://wa.me/573244716150?text=Hola%20Mafit!%20Quiero%20hacer%20un%20pedido." target="_blank" class="px-5 py-2 rounded-full border border-brand-gold/50 text-brand-gold text-xs font-semibold tracking-wider uppercase hover:bg-brand-gold hover:text-brand-charcoal transition duration-300">
+          Pedir Batido
+        </a>
+      </div>
 
-            <div id="menuGrid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Los items se cargan por JS -->
-            </div>
-        </div>
-    </section>
+      <button onclick="toggleMobileMenu()" class="md:hidden text-gray-400 hover:text-white p-2">
+        <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
+      </button>
+    </div>
 
-    <!-- -->
-    <!-- Sección del Asesor Nutricional Inteligente con IA -->
-    <section id="asesor-ia" class="py-24 px-6 bg-[#FAF5F0] border-t border-b border-mafit-soft-pink">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-16">
-                <span class="text-mafit-gold font-semibold tracking-[0.2em] text-xs uppercase">Tecnología de Vanguardia</span>
-                <h2 class="text-4xl mt-2 mb-4 italic">Asesor Nutricional IA de Mafit</h2>
-                <p class="text-gray-500 max-w-2xl mx-auto">Conéctate con nuestra inteligencia artificial premium para diseñar un batido y recomendación de estilo de vida completamente adaptada a tu cuerpo y objetivos cotidianos.</p>
-            </div>
+    <div id="mobile-menu" class="hidden md:hidden mt-3 pt-3 border-t border-white/5 flex flex-col gap-3 pb-2">
+      <a href="#inicio" onclick="showSection('inicio')" class="text-sm py-2 px-3 rounded bg-white/5 text-brand-gold">Inicio</a>
+      <a href="#menu" onclick="showSection('menu')" class="text-sm py-2 px-3 rounded text-gray-300 hover:bg-white/5">Nuestro Menú</a>
+      <a href="#ia-builder" onclick="showSection('ia-builder')" class="text-sm py-2 px-3 rounded text-gray-300 hover:bg-white/5 flex items-center gap-2"><i class="fa-solid fa-wand-magic-sparkles text-brand-gold"></i> Asesor Nutricional IA</a>
+      <a href="#contacto" onclick="showSection('contacto')" class="text-sm py-2 px-3 rounded text-gray-300 hover:bg-white/5">Ubicación</a>
+      <a href="https://wa.me/573244716150?text=Hola%20Mafit!%20Quiero%20hacer%20un%20pedido%20desde%20la%20web." target="_blank" class="mt-2 text-center bg-brand-gold text-brand-charcoal py-2 rounded-full text-sm font-bold">Pedir por WhatsApp</a>
+    </div>
+  </nav>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
-                <!-- Formulario de Configuración -->
-                <div class="p-8 md:p-10 bg-white rounded-3xl border border-mafit-soft-pink shadow-sm flex flex-col justify-between">
-                    <div>
-                        <h3 class="text-2xl font-serif mb-6 text-mafit-dark">Cuéntanos sobre ti</h3>
-                        
-                        <div class="space-y-6">
-                            <div>
-                                <label class="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">¿Cuál es tu objetivo primordial?</label>
-                                <select id="ai-goal" class="w-full p-4 rounded-xl border border-gray-200 focus:border-mafit-gold focus:ring-1 focus:ring-mafit-gold outline-none transition-all text-sm bg-white">
-                                    <option value="ganancia muscular">Ganancia de Masa Muscular Limpia</option>
-                                    <option value="tonificación">Tonificación y Definición Física</option>
-                                    <option value="pérdida de grasa">Pérdida de Grasa con Alta Energía</option>
-                                    <option value="rendimiento atlético">Rendimiento Atlético de Alto Impacto</option>
-                                    <option value="recuperación activa">Recuperación Activa y Bienestar General</option>
-                                </select>
-                            </div>
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="flex-grow">
+    
+    <!-- SECCIÓN INICIO -->
+    <section id="sec-inicio" class="section-view px-4 py-12 md:py-20 max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div class="lg:col-span-7 space-y-6">
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-brand-gold/20 text-brand-gold text-xs tracking-wide">
+            <span class="w-2 h-2 rounded-full bg-brand-gold animate-pulse"></span>
+            Gimnasio / Club Deportivo & Nutrición
+          </div>
+          <h1 class="font-serif text-4xl md:text-6xl lg:text-7xl font-bold leading-tight text-white">
+            Transforma tu <br>
+            <span class="text-transparent bg-clip-text gradient-gold">Cuerpo, Mente</span> <br>
+            y Espíritu.
+          </h1>
+          <p class="text-gray-400 text-base md:text-lg max-w-xl leading-relaxed">
+            Nos dedicamos a transformar vidas, cuerpos, mentes y espíritus a través de un enfoque integral en nutrición. Nuestro método se basa en una alimentación rica en proteínas de alta calidad, nutrientes esenciales y la energía que tu organismo necesita para alcanzar su máximo potencial. 🌟
+          </p>
+          <div class="pt-4 flex flex-col sm:flex-row gap-4">
+            <button onclick="showSection('ia-builder')" class="px-8 py-4 rounded-full bg-brand-gold text-brand-charcoal font-bold tracking-wide hover:bg-brand-champagne transition duration-300 flex items-center justify-center gap-2 shadow-lg shadow-brand-gold/10">
+              <i class="fa-solid fa-wand-magic-sparkles"></i> Diseñar mi Batido con IA
+            </button>
+            <button onclick="showSection('menu')" class="px-8 py-4 rounded-full bg-white/5 border border-white/10 text-white font-semibold hover:bg-white/10 transition">
+              Ver Catálogo Completo
+            </button>
+          </div>
 
-                            <div>
-                                <label class="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">Tu nivel de actividad física diaria</label>
-                                <select id="ai-activity" class="w-full p-4 rounded-xl border border-gray-200 focus:border-mafit-gold focus:ring-1 focus:ring-mafit-gold outline-none transition-all text-sm bg-white">
-                                    <option value="sedentario a leve">Moderado / Principiante (1-2 veces por semana)</option>
-                                    <option value="activo">Atleta Constante (3-5 veces por semana)</option>
-                                    <option value="alto rendimiento">Alto Rendimiento / Competidor Diario</option>
-                                </select>
-                            </div>
-
-                            <div>
-                                <label class="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">Preferencias alimenticias o notas especiales</label>
-                                <textarea id="ai-notes" placeholder="Ej: Prefiero batidos con notas cítricas, soy intolerante a la lactosa, o entreno en la mañana muy temprano..." rows="3" class="w-full p-4 rounded-xl border border-gray-200 focus:border-mafit-gold focus:ring-1 focus:ring-mafit-gold outline-none transition-all text-sm resize-none"></textarea>
-                            </div>
-                        </div>
-                    </div>
-
-                    <button onclick="generateAIConsultation()" class="mt-8 w-full bg-mafit-dark text-white py-4 rounded-xl font-bold tracking-wider text-xs uppercase hover:bg-mafit-gold hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2">
-                        <span>✨ Diseñar Mi Batido Ideal</span>
-                    </button>
-                </div>
-
-                <!-- Resultado Interactivo de la IA -->
-                <div class="relative min-h-[450px] bg-white rounded-3xl border border-mafit-soft-pink overflow-hidden shadow-sm flex flex-col">
-                    <!-- Estado Inicial / Placeholder de Carga -->
-                    <div id="ai-placeholder" class="absolute inset-0 flex flex-col items-center justify-center text-center p-10 z-10 transition-opacity duration-500">
-                        <div class="text-6xl mb-4 ai-pulse">🥛</div>
-                        <h4 class="text-xl font-serif text-mafit-dark mb-2">Tu Fórmula Inteligente te Espera</h4>
-                        <p class="text-sm text-gray-400 max-w-sm">Completa tus datos a la izquierda para que nuestra IA calcule tus requerimientos y genere la combinación perfecta bajo el Método Mafit.</p>
-                    </div>
-
-                    <!-- Pantalla de Carga Activa -->
-                    <div id="ai-loading" class="hidden absolute inset-0 bg-white flex-col items-center justify-center text-center p-10 z-20">
-                        <div class="w-12 h-12 border-4 border-mafit-gold border-t-transparent rounded-full animate-spin mb-6"></div>
-                        <h4 id="ai-loading-step" class="text-lg font-serif text-mafit-dark mb-2">Consultando al Asesor Mafit...</h4>
-                        <p class="text-xs text-gray-400">Calculando balance ideal de proteínas y nutrientes esenciales.</p>
-                    </div>
-
-                    <!-- Contenedor del Resultado -->
-                    <div id="ai-result-content" class="hidden flex flex-col h-full justify-between p-8 md:p-10 opacity-0 transition-opacity duration-700">
-                        <div>
-                            <div class="flex justify-between items-start gap-4 mb-6">
-                                <div>
-                                    <span class="text-[10px] font-bold tracking-widest text-mafit-gold uppercase bg-[#FAF5F0] px-3 py-1 rounded-full border border-mafit-soft-pink">Fórmula Exclusiva IA</span>
-                                    <h3 id="res-shake-name" class="text-3xl font-serif mt-2 text-mafit-dark">Nombre del batido</h3>
-                                </div>
-                                <div id="res-image-container" class="w-20 h-20 rounded-2xl overflow-hidden shadow-md shrink-0 border border-mafit-soft-pink">
-                                    <img id="res-shake-img" src="" alt="Vista del Batido" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/150x150/FFAF6F0/242D35?text=Mafit'">
-                                </div>
-                            </div>
-
-                            <div class="mb-6">
-                                <h4 class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-3">Ingredientes de Alta Densidad</h4>
-                                <ul id="res-ingredients" class="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm text-gray-600">
-                                    <!-- Dinámico -->
-                                </ul>
-                            </div>
-
-                            <div class="mb-6 p-4 bg-gray-50 rounded-xl border border-gray-100">
-                                <h4 class="text-xs font-bold uppercase tracking-wider text-mafit-gold mb-2">Por qué funciona para ti</h4>
-                                <p id="res-benefits" class="text-xs text-gray-500 leading-relaxed">Beneficios explicados.</p>
-                            </div>
-
-                            <div class="mb-6">
-                                <h4 class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">Alineación del Método</h4>
-                                <p id="res-macros" class="text-xs text-gray-500 italic">Desglose de macros.</p>
-                            </div>
-                        </div>
-
-                        <div class="p-5 border-t border-dashed border-mafit-soft-pink mt-6">
-                            <div class="flex items-start gap-3">
-                                <span class="text-xl">💡</span>
-                                <div>
-                                    <h5 class="text-xs font-bold text-mafit-dark uppercase tracking-wider">Tip del Head Coach</h5>
-                                    <p id="res-tip" class="text-xs text-gray-500 mt-1 leading-relaxed"></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Sección de Sede y Horarios -->
-    <section id="contacto" class="py-24 px-6 bg-mafit-dark text-white">
-        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+          <div class="grid grid-cols-3 gap-6 pt-10 border-t border-white/5 max-w-md">
             <div>
-                <h2 class="text-4xl mb-6 italic">Tu Espacio en Barranquilla</h2>
-                <p class="text-gray-400 mb-8 leading-relaxed">
-                    Ubicados en el Norte Centro Histórico, nuestra sede es más que un Shake Bar. Es el punto de encuentro para una comunidad que valora la salud integral.
-                </p>
-                <div class="space-y-4">
-                    <div class="flex items-center gap-3">
-                        <span class="text-mafit-gold">📍</span>
-                        <span>Cl. 40 #44-115 Loc 2, Barranquilla.</span>
-                    </div>
-                    <div class="flex items-center gap-3">
-                        <span class="text-mafit-gold">⏰</span>
-                        <div id="statusBadge" class="px-3 py-1 rounded text-xs font-bold bg-gray-700">Calculando...</div>
-                    </div>
-                </div>
-                
-                <div class="mt-10 p-6 border border-gray-700 rounded-xl">
-                    <h4 class="font-bold mb-4 uppercase text-sm tracking-widest">Horarios de Servicio</h4>
-                    <div class="flex justify-between py-2 border-b border-gray-800">
-                        <span>Lunes a Viernes</span>
-                        <span>6:00 AM - 9:00 PM</span>
-                    </div>
-                    <div class="flex justify-between py-2 border-b border-gray-800">
-                        <span>Sábados</span>
-                        <span>8:00 AM - 4:00 PM</span>
-                    </div>
-                    <div class="flex justify-between py-2 text-gray-500">
-                        <span>Domingos</span>
-                        <span>Cerrado (Comunidad)</span>
-                    </div>
-                </div>
+              <span class="block text-2xl font-bold text-brand-gold font-serif">100%</span>
+              <span class="text-xs text-brand-textMuted uppercase tracking-wider">Premium Protein</span>
             </div>
-            
-            <div class="h-96 bg-gray-800 rounded-2xl flex items-center justify-center border border-mafit-gold overflow-hidden relative">
-                <!-- Representación visual de mapa sin
+            <div>
+              <span class="block text-2xl font-bold text-brand-gold font-serif">A Medida</span>
+              <span class="text-xs text-brand-textMuted uppercase tracking-wider">Plan Nutricional</span>
+            </div>
+            <div>
+              <span class="block text-2xl font-bold text-brand-gold font-serif">Barranquilla</span>
+              <span class="text-xs text-brand-textMuted uppercase tracking-wider">Sede Central</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5 relative">
+          <div class="absolute -inset-1 rounded-2xl bg-gradient-to-r from-brand-champagne to-brand-gold opacity-20 blur-2xl"></div>
+          <div class="relative bg-brand-card border border-white/10 p-6 rounded-2xl glow-gold">
+            <img id="img-hero" src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=600" alt="Mafit Premium Lifestyle" class="w-full h-80 object-cover rounded-xl mb-6 grayscale hover:grayscale-0 transition-all duration-700">
+            <div class="flex items-center justify-between">
+              <div>
+                <span class="text-[10px] uppercase text-brand-gold tracking-widest font-bold">Recomendado de Hoy</span>
+                <h4 class="font-serif text-lg font-bold text-white">Mafit Fit Gold</h4>
+              </div>
+              <span class="bg-brand-gold/10 text-brand-gold text-xs px-3 py-1 rounded-full border border-brand-gold/20 font-bold">$18.900 Cop</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN MENÚ / CATÁLOGO -->
+    <section id="sec-menu" class="section-view hidden px-4 py-12 max-w-7xl mx-auto">
+      <div class="text-center max-w-3xl mx-auto mb-12 space-y-3">
+        <span class="text-brand-gold text-xs font-bold uppercase tracking-[0.2em]">Selección Gourmet</span>
+        <h2 class="font-serif text-3xl md:text-5xl font-bold">Nuestra Carta de Bienestar</h2>
+        <p class="text-gray-400 text-sm md:text-base">Batidos e infusiones elaborados rigurosamente bajo el estándar de calidad Mafit. Ideales para antes o después de tu entrenamiento.</p>
+      </div>
+
+      <div class="flex flex-wrap justify-center gap-3 mb-10">
+        <button onclick="filterMenu('all')" class="category-btn px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider bg-brand-gold text-brand-charcoal transition">Todos</button>
+        <button onclick="filterMenu('protein')" class="category-btn px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white transition">Hiperproteicos</button>
+        <button onclick="filterMenu('energy')" class="category-btn px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white transition">Energía & Enfoque</button>
+        <button onclick="filterMenu('green')" class="category-btn px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white transition">Verdes & Detox</button>
+      </div>
+
+      <div id="products-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+    </section>
+
+    <!-- SECCIÓN ASESOR NUTRICIONAL IA -->
+    <section id="sec-ia-builder" class="section-view hidden px-4 py-12 max-w-5xl mx-auto">
+      <div class="text-center max-w-2xl mx-auto mb-10 space-y-3">
+        <span class="text-brand-gold text-xs font-bold uppercase tracking-[0.2em]"><i class="fa-solid fa-wand-magic-sparkles"></i> Tecnología Inteligente</span>
+        <h2 class="font-serif text-3xl md:text-5xl font-bold">Diseña tu Batido Ideal</h2>
+        <p class="text-gray-400 text-sm md:text-base">Ingresa tus objetivos y condiciones físicas. Nuestro motor de IA impulsado por Gemini creará tu perfil nutricional ideal.</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div class="lg:col-span-5 bg-brand-card border border-white/5 p-6 rounded-2xl space-y-6">
+          <h3 class="font-serif text-xl font-bold text-white border-b border-white/5 pb-3">Tus Datos Físicos</h3>
+          
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-brand-textMuted mb-2 font-semibold">Tu Objetivo Principal</label>
+            <select id="user-goal" class="w-full bg-brand-charcoal border border-white/10 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:border-brand-gold">
+              <option value="ganancia-muscular">Aumento de Masa Muscular (Hipertrofia)</option>
+              <option value="perdida-peso">Definición & Pérdida de Grasa</option>
+              <option value="energia-resistencia">Energía Pre-Entrenamiento Extrema</option>
+              <option value="recuperacion-salud">Recuperación e Inmunología Completa</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-brand-textMuted mb-2 font-semibold">Tipo de Alimentación / Restricciones</label>
+            <select id="user-diet" class="w-full bg-brand-charcoal border border-white/10 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:border-brand-gold">
+              <option value="estandar">Sin restricciones (Proteína de Suero Whey)</option>
+              <option value="vegano">100% Vegano / Plant-Based (Arveja y Soya)</option>
+              <option value="intolerancia-lactosa">Intolerante a la Lactosa (Whey Isolate)</option>
+              <option value="keto">Keto / Bajo en Carbohidratos</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-brand-textMuted mb-2 font-semibold">Preferencia de Sabor</label>
+            <input type="text" id="user-flavor" placeholder="Ej: Chocolate belga, fresas, vainilla..." class="w-full bg-brand-charcoal border border-white/10 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:border-brand-gold">
+          </div>
+
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-brand-textMuted mb-2 font-semibold">Nivel de Actividad Diaria</label>
+            <div class="grid grid-cols-3 gap-2">
+              <button onclick="setActivity('Moderado')" class="activity-btn px-2 py-2 text-xs rounded border border-brand-gold text-brand-gold transition">Moderado</button>
+              <button onclick="setActivity('Intenso')" class="activity-btn px-2 py-2 text-xs rounded border border-white/10 text-gray-400 hover:border-brand-gold transition">Intenso</button>
+              <button onclick="setActivity('Atleta')" class="activity-btn px-2 py-2 text-xs rounded border border-white/10 text-gray-400 hover:border-brand-gold transition">Atleta Pro</button>
+            </div>
+          </div>
+
+          <button onclick="generateCustomShake()" class="w-full py-4 rounded-full bg-brand-gold text-brand-charcoal font-bold tracking-wide hover:bg-brand-champagne transition duration-300 flex items-center justify-center gap-2">
+            <i class="fa-solid fa-calculator animate-bounce"></i> Calcular & Diseñar Batido
+          </button>
+        </div>
+
+        <div class="lg:col-span-7 bg-brand-card border border-white/5 p-6 rounded-2xl relative min-h-[440px] flex flex-col justify-between">
+          <div id="ai-placeholder" class="flex flex-col items-center justify-center text-center my-auto py-12 space-y-4">
+            <div class="w-16 h-16 rounded-full bg-brand-gold/10 border border-brand-gold/20 flex items-center justify-center animate-pulse">
+              <i class="fa-solid fa-wand-magic-sparkles text-2xl text-brand-gold"></i>
+            </div>
+            <h4 class="font-serif text-xl font-bold text-white">Tu batido te espera</h4>
+            <p class="text-xs text-gray-400 max-w-sm">Configura tus preferencias a la izquierda y presiona el botón. Nuestra IA generará una fórmula personalizada bajo el Método Mafit.</p>
+          </div>
+
+          <div id="ai-loading" class="hidden flex flex-col items-center justify-center text-center my-auto py-12 space-y-4">
+            <div class="relative w-16 h-16">
+              <div class="absolute inset-0 rounded-full border-4 border-brand-gold/10"></div>
+              <div class="absolute inset-0 rounded-full border-4 border-t-brand-gold animate-spin"></div>
+            </div>
+            <p class="text-brand-gold font-bold animate-pulse text-sm">Gemini está analizando tus objetivos...</p>
+          </div>
+
+          <div id="ai-result" class="hidden space-y-6">
+            <div class="space-y-4">
+              <div class="space-y-1">
+                <span class="text-[10px] uppercase text-brand-gold tracking-widest font-bold block">Tu Fórmula Exclusiva Mafit</span>
+                <h3 id="shake-name" class="font-serif text-2xl font-bold text-white">Fit Protein Max</h3>
+                <p id="shake-description" class="text-xs text-gray-400 leading-relaxed"></p>
+              </div>
+
+              <div class="grid grid-cols-4 gap-2 bg-brand-charcoal p-3 rounded-xl border border-white/5 text-center">
+                <div>
+                  <span class="block text-brand-gold text-sm font-bold" id="macro-prot">30g</span>
+                  <span class="text-[8px] text-brand-textMuted uppercase">Proteína</span>
+                </div>
+                <div>
+                  <span class="block text-white text-sm font-bold" id="macro-carbs">12g</span>
+                  <span class="text-[8px] text-brand-textMuted uppercase">Carbs</span>
+                </div>
+                <div>
+                  <span class="block text-white text-sm font-bold" id="macro-fats">5g</span>
+                  <span class="text-[8px] text-brand-textMuted uppercase">Grasas</span>
+                </div>
+                <div>
+                  <span class="block text-brand-gold text-sm font-bold" id="macro-kcal">250 kcal</span>
+                  <span class="text-[8px] text-brand-textMuted uppercase">Calorías</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="border-t border-white/5 pt-4">
+              <h4 class="text-xs uppercase text-brand-gold font-bold tracking-wider mb-2">Ingredientes Recomendados:</h4>
+              <ul id="shake-ingredients" class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-gray-300"></ul>
+            </div>
+
+            <div class="flex gap-3 justify-end border-t border-white/5 pt-4">
+              <a id="order-custom-btn" href="#" target="_blank" class="w-full sm:w-auto px-6 py-3 rounded-full bg-brand-gold text-brand-charcoal font-bold text-xs hover:bg-brand-champagne transition flex items-center justify-center gap-1.5 shadow-md">
+                <i class="fa-brands fa-whatsapp text-sm"></i> Pedir esta fórmula por WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN CONTACTO / UBICACIÓN -->
+    <section id="sec-contacto" class="section-view hidden px-4 py-12 max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div class="lg:col-span-5 space-y-6">
+          <span class="text-brand-gold text-xs font-bold uppercase tracking-[0.2em]">Visítanos</span>
+          <h2 class="font-serif text-3xl md:text-5xl font-bold">Nuestra Sede en Barranquilla</h2>
+          
+          <div class="space-y-4 pt-4">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-brand-gold flex-shrink-0">
+                <i class="fa-solid fa-location-dot"></i>
+              </div>
+              <div>
+                <h4 class="text-sm font-bold text-white">Dirección</h4>
+                <p class="text-xs text-gray-400 mt-1">Cl. 40 #44-115 Loc 2, Nte. Centro Historico, Barranquilla, Atlántico, Colombia.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-brand-gold flex-shrink-0">
+                <i class="fa-solid fa-clock"></i>
+              </div>
+              <div>
+                <h4 class="text-sm font-bold text-white">Horarios de Atención</h4>
+                <p class="text-xs text-gray-400 mt-1">Lunes a Sábado: 6:00 AM - 9:00 PM</p>
+                <p class="text-xs text-red-400 font-semibold mt-1">Domingo: Cerrado</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-6">
+            <a href="https://wa.me/573244716150?text=Hola%20Mafit!%20Vi%20su%20p%C3%A1gina%20web%20y%20me%20gustar%C
